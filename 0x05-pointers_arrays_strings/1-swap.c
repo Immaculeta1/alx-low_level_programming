@@ -1,16 +1,15 @@
 #include "main.h"
 
 /**
- * _print_rev_recursion - reverse
- * @s: pointer to string params
- *
+ * swap_int - swaps the values of two integers
+ * @a: pointer 1
+ * @b: pointer 2
+ * Return: void
  */
 
-void _print_rev_recursion(char *s)
+void swap_int(int *a, int *b)
 {
-if (*s)
-{
-_print_rev_recursion(s + 1);
-_putchar(*s);
-}
+int x = *a;
+*a = *b;
+*b = x;
 }
