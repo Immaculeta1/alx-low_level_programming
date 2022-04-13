@@ -1,5 +1,3 @@
-es (21 sloc)  408 Bytes
-
 #ifndef OP_FUNCTIONS_
 #define OP_FUNCTIONS_
 
