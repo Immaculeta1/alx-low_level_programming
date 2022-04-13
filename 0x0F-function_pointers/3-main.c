@@ -26,8 +26,10 @@ if (argv[2][1] != '\0')
 {
 printf("Error\n");
 exit(99);
-    }
+}
+
 func_ptr = get_op_func(argv[2]);
+
 if (func_ptr == NULL)
 {
 printf("Error\n");
