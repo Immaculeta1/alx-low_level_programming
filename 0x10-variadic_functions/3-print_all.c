@@ -15,37 +15,37 @@ void print_string(va_list *arg);
  */
 void print_all(const char * const format, ...)
 {
-  unsigned int j = 0;
-  char *separator = "";
+unsigned int j = 0;
+char *separator = "";
 
-  format_struct_ptr fmt_arr[] = {
-				 {'c', print_char},
-				 {'i', print_int},
-				 {'f', print_float},
-				 {'s', print_string},
-				 {'\0', NULL}
-  };
-  void (*get_func_ptr)(va_list *);
-  va_list args;
+format_struct_ptr fmt_arr[] = {
+{'c', print_char},
+{'i', print_int},
+{'f', print_float},
+{'s', print_string},
+{'\0', NULL}
+};
+void (*get_func_ptr)(va_list *);
+va_list args;
 
-  va_start(args, format);
+va_start(args, format);
 
-  while (format && format[j] != '\0')
-    {
-      get_func_ptr = get_func(format[j], fmt_arr);
+while (format && format[j] != '\0')
+{
+get_func_ptr = get_func(format[j], fmt_arr);
 
-      if (get_func_ptr)
-	{
-	  printf("%s", separator);
-	  get_func_ptr(&args);
-	  separator = ", ";
-	}
+if (get_func_ptr)
+{
+printf("%s", separator);
+get_func_ptr(&args);
+separator = ", ";
+}
 
-      j++;
-    }
+j++;
+}
 
-  va_end(args);
-  printf("\n");
+va_end(args);
+printf("\n");
 }
 
 /**
@@ -58,19 +58,19 @@ void print_all(const char * const format, ...)
 
 void (*get_func(char identifier, struct format_struct *fmt_arr))(va_list *)
 {
-  int i = 0;
+int i = 0;
 
-  while (fmt_arr[i].format)
-    {
-      if (fmt_arr[i].format == identifier)
-	{
-	  return (fmt_arr[i].fmt_print_func);
-	}
+while (fmt_arr[i].format)
+{
+if (fmt_arr[i].format == identifier)
+{
+return (fmt_arr[i].fmt_print_func);
+}
 
-      i++;
-    }
+i++;
+}
 
-  return (fmt_arr[i].fmt_print_func);
+return (fmt_arr[i].fmt_print_func);
 }
 
 /**
@@ -80,7 +80,7 @@ void (*get_func(char identifier, struct format_struct *fmt_arr))(va_list *)
 
 void print_char(va_list *arg)
 {
-  printf("%c", va_arg(*arg, int));
+printf("%c", va_arg(*arg, int));
 }
 
 /**
@@ -90,7 +90,7 @@ void print_char(va_list *arg)
 
 void print_int(va_list *arg)
 {
-  printf("%d", va_arg(*arg, int));
+printf("%d", va_arg(*arg, int));
 }
 
 /**
@@ -100,7 +100,7 @@ void print_int(va_list *arg)
 
 void print_float(va_list *arg)
 {
-  printf("%f", va_arg(*arg, double));
+printf("%f", va_arg(*arg, double));
 }
 
 /**
@@ -110,11 +110,11 @@ void print_float(va_list *arg)
 
 void print_string(va_list *arg)
 {
-  char *str[2];
-  int i;
+char *str[2];
+int i;
 
-  str[0] = va_arg(*arg, char *);
-  str[1] = "(nil)";
-  i = str[0] == NULL;
-  printf("%s", str[i]);
+str[0] = va_arg(*arg, char *);
+str[1] = "(nil)";
+i = str[0] == NULL;
+printf("%s", str[i]);
 }
